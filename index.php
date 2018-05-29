@@ -2,19 +2,19 @@
 	//VARIAVEIS Referentes somente a esta página
 	
 	$title = "Get - Cálculo"; // Titulo
-	$global_scripts = array("/js/index/code1.js", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"); //Scripts
-	$global_css = array("/css/index/style1.css"); //Estilos
+	$global_scripts = array("js/index/code1.js", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"); //Scripts
+	$global_css = array("css/index/style1.css"); //Estilos
 	$icon = "images/icon.png";
 	
 	//Banco de Dados
-	require($_SERVER['DOCUMENT_ROOT'] . "/modules/php/mysql/connect.php");
+	require("modules/php/mysql/connect.php");
 ?>
 <!DOCTYPE html>
 <html>
 	<!-- ESTRUTURA -->
 	<?php
-		require($_SERVER['DOCUMENT_ROOT'] . "/modules/head.php"); // HEAD
-		require($_SERVER['DOCUMENT_ROOT'] . "/modules/parts/menu.php"); // MENU
+		require("modules/head.php"); // HEAD
+		require("modules/parts/menu.php"); // MENU
 	?>
 	<body>
 	
