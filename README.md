@@ -1,6 +1,6 @@
 # Get Cálculo no DIA T
 
-Este é um site/app gamificado feito por:
+Este é um site/app gamificado desenvolvido por:
 
 1 - Sergio
 2 - Alysson
