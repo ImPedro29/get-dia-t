@@ -3,10 +3,13 @@
 	$global_scripts = array("code.js", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"); //Scripts
 	
 	//Diretorio principal
-	$dir = $_SERVER['DOCUMENT_ROOT'] . "/GitHub/get-dia-t";
+	$dir = "/GitHub/get-dia-t";
 	
 	//Banco de Dados
-	require($dir . "/modules/php/mysql/connect.php");
+	require($_SERVER['DOCUMENT_ROOT'] . $dir . "/modules/php/mysql/connect.php");
+	
+	//Verificar Token
+	require($_SERVER['DOCUMENT_ROOT'] . $dir . "/modules/php/checkToken.php");
 ?>
 <!DOCTYPE html>
 <html>
