@@ -1,0 +1,32 @@
+body{
+	background-color: rgba(0,0,0,0.85);
+}
+#startGame{
+    width: 400px;
+    height: 200px;
+    border-radius: 100px;
+    font-size: 60px;
+    border-width: 0px;
+    background-color: #26de26;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.72, 0.72, 0, 1.79);
+    box-shadow: 0px 0px 17px #26de26;
+    outline: none;
+}
+#startGame:hover{
+	box-shadow: 0px 0px 20px white;
+	cursor: pointer;
+	height: 235px;
+}
+#startGamePlayers{
+	font-size: 20px;
+	margin: 0px;
+	font-weight: normal;
+}

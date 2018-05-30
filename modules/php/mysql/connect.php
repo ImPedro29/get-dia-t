@@ -1,8 +1,8 @@
 <?php
 //CONEXÃO COM O BANCO DE DADOS
 //> é daqui que você dá o include
-	$servidor = '35.198.28.56';
+	$servidor = 'localhost';
 	$usuario = 'getdiat';
-	$senha = '2Sjp60qLwuwflbUf';
+	$senha = 'tg0vvlbb5o';
 	$banco = 'getdiat';
 	$con = new mysqli($servidor, $usuario, $senha, $banco) or die("Conexão com banco de dados não pode ser estabelecida.");
