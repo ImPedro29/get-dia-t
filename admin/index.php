@@ -20,7 +20,9 @@
 	</head>
 	
 	<body>
-		<button id="startGame">Iniciar!<h5 id="startGamePlayers">0 Jogadores...</h5></button>
+		<button id="startGame" class="startGame">Iniciar!<h5 id="startGamePlayers">0 Jogadores...</h5></button>
+		<button id="schedule" class="schedule"></button>
+		<div id="message">VENHA JOGAR!</div>
 	</body>
 	<?php
 		//Scripts
