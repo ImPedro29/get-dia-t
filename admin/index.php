@@ -23,6 +23,10 @@
 		<button id="startGame" class="startGame">Iniciar!<h5 id="startGamePlayers">0 Jogadores...</h5></button>
 		<button id="schedule" class="schedule"></button>
 		<div id="message">VENHA JOGAR!</div>
+		<div id="question">
+			<h4 id="questionNumber">Pergunta 01:</h4>
+			<h4 class="questionEnunciation">Veja a questão no seu celular!</h4>
+		</div>
 	</body>
 	<?php
 		//Scripts

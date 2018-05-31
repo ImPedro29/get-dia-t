@@ -9,11 +9,17 @@ var buttonStart = document.getElementById("startGame");
 var numberOfPlayers = document.getElementById("startGamePlayers");
 var scheduleBox = document.getElementById("schedule");
 var messageBox = document.getElementById("message");
+var question = document.getElementById("question");
+var questionNumber = document.getElementById("questionNumber");
 
 var status = 0;
 var gameStatus = 1; //0 -> Intervalo entre Questões 1 ->Intervalo para resolver questão
 
-var numberOfQuestions = 0;
+var numberOfQuestionsForResolver = 2;
+var numberOfQuestions = 0; // Não mecher
+
+//Inicial Questão...
+question.classList.add("displayNone");
 
 //Eventos
 buttonStart.onclick = function(){
@@ -52,7 +58,7 @@ function startGame(){
 	}, interval*1000);
 	buttonStart.classList.add("startGameAnimationButton");
 	buttonStart.innerHTML = "Novo Jogo!<h5 id='startGamePlayers'>Em andamento...";
-	message("Iniciando o jogo<br>Prepare-se!");
+	message("Iniciando o jogo...<br>Prepare-se!");
 }
 
 //Contar no contador
@@ -88,11 +94,13 @@ function moveScheduleBox(){
 function restartSchedule(){
 	if(gameStatus == 0){
 		numberOfQuestions++;		
-		if(numberOfQuestions == 2){
+		if(numberOfQuestions == numberOfQuestionsForResolver){
 			//Quando terminar a contagem e terminar o jogo
-			message("E agora... Os vencedores:");
+			message("Vencedores...");
+			onEnd();
 		}else{
 			message("Intervalo...");
+			unShowQuestion();
 			scoreStart(intervalTime)
 			scheduleBox.classList.remove("scheduleActivedAnimation");
 			scheduleBox.classList.remove("scheduleDesactivedAnimation");
@@ -102,6 +110,7 @@ function restartSchedule(){
 	}
 	else{
 		message("Vamos, resolva rápido!");
+		showQuestion();
 		scoreStart(interval);
 		gameStatus = 0;
 	}
@@ -110,6 +119,41 @@ function restartSchedule(){
 //Mudar mensagens
 function message(text){
 	messageBox.innerHTML = text;
+}
+
+//Mostrar Questão
+function showQuestion(){
+	question.classList.remove("displayNone");
+	questionNumber.innerHTML = "Pergunta 0" + (numberOfQuestions+1) + ":";
+	$.ajax({
+		type: "POST",
+		dataType: "json",
+		url: dir + "/modules/restAPI/questionSender/",
+		data: "token=" + token,
+		complete: function(data){
+			data = data.responseJSON;
+			if(data.error){
+				message("Ocorreu um erro... Reiniciando rodada.");
+				setTimeout(function(){ window.location = window.location; }, 2000);
+			}			
+		}
+	});
+}
+
+//"Desamostrar" questão
+function unShowQuestion(){
+	question.classList.add("displayNone");
+}
+
+//Mostrar RANK
+function showRank(){
+	
+}
+
+//Quando terminar
+function onEnd(){
+	showRank();
+	unShowQuestion();
 }
 
 //Reiniciar jogo
