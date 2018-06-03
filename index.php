@@ -1,20 +1,25 @@
 <?php
 	//VARIAVEIS Referentes somente a esta página
-	$global_scripts = array("code.js", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"); //Scripts
+	$global_scripts = array("js/index/code.js", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"); //Scripts
 	
 	//Diretorio principal
 	$dir = "/GitHub/get-dia-t";
 	
+	//Dar dir para o JS
+	echo "<script> var dir = '$dir'; </script>";
+	
 	//Banco de Dados
-	require($dir . "/modules/php/mysql/connect.php");
+	require($_SERVER['DOCUMENT_ROOT'] . $dir . "/modules/php/mysql/connect.php");
+	
 ?>
 <!DOCTYPE html>
 <html>
 	<!-- ESTRUTURA -->
 	<body>
 		<head>
-			<title>GET- Administração</title>
-			<link rel="stylesheet" type="text/css" href="style.css">
+			<title>GET - Cálculo</title>
+			<link rel="stylesheet" type="text/css" href="css/index/style.css">
+			<button id="startGame" class="startGame">Jogar!<h5 id="startGamePlayers">Carregando...</h5></button>
 		</head>
 	</body>
 	<?php

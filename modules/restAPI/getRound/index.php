@@ -16,11 +16,10 @@
 	while($row = $res->fetch_assoc()){
 		if($res->num_rows == $row["id"]){
 			$response->playersNumber = $row["playersNumber"];
-			$response->playersToken = json_decode($row["players"]);
+			$response->playersName = json_decode($row["players"]);
 		}
 	}
 	
 	echo json_encode($response);
-	
 	
 ?>

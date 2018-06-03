@@ -18,7 +18,7 @@
 	
 	if(!$statusToken){
 		die("Oops apenas a administração tem acesso :(");
-	}else{
+	}else if(!$noShowJSInfo){
 		echo "<script> var token = '". $_GET["token"] ."'; var dir = '$dir'; </script>";
 	}
 
