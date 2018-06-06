@@ -25,9 +25,10 @@
 	
 	$roundQuestions = $rdNumber1 . "," . $rdNumber2;
 
-	$sql = "INSERT INTO rounds (id, players, progressing, playersNumber, roundQuestions) VALUES (null, null, 0, 0, '$roundQuestions')";
+	$sql = "INSERT INTO rounds (id, players, progressing, playersNumber, roundQuestions) VALUES (NULL, 'null', 0, 0, '$roundQuestions')";
+	
 	echo $sql;
 	$con->query($sql) or $response->error = true;
-	$response->erroMessage = mysqli_connect_error();
+	
 	echo json_encode($response);
 ?>

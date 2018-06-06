@@ -10,6 +10,36 @@
 	
 	//Verificar Token
 	require($_SERVER['DOCUMENT_ROOT'] . $dir . "/modules/php/checkToken.php");
+	
+	//Checar se existe algum round
+	$sql = "SELECT * FROM rounds";
+	$res = $con->query($sql);
+	
+	$lastRoundEnded = true;
+	
+	if($res->num_rows > 0){
+		while($row = $res->fetch_assoc()){
+			if($row["progressing"] == 0){
+				$lastRoundEnded = false;
+				break;
+			}
+		}
+	}
+	
+	//Insere novo round na database
+	if($lastRoundEnded){
+		$rdNumber1 = rand(1,10);
+		$rdNumber2 = rand(1,10);
+		while($rdNumber1 == $rdNumber2) $rdNumber2 = rand(1,10);
+		
+		$roundQuestions = $rdNumber1 . "," . $rdNumber2;
+		
+		$sql = "INSERT INTO rounds (id, players, progressing, playersNumber, roundQuestions) VALUES (NULL, 'null', 0, 0, '$roundQuestions')";
+		$con->query($sql) or die("Falha. Não foi possível inserir um novo round na DB.");
+	}
+	
+	
+	
 ?>
 <!DOCTYPE html>
 <html>

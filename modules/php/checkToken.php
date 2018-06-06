@@ -16,6 +16,8 @@
 		}
 	}
 	
+	error_reporting(E_ERROR | E_PARSE);
+	
 	if(!$statusToken){
 		die("Oops apenas a administração tem acesso :(");
 	}else if(!$noShowJSInfo){

@@ -64,23 +64,6 @@ function startGame(){
 	
 }
 
-//Criar tabela para começar
-function preStartGame(){
-	$.ajax({
-		type: "GET",
-		dataType: "json",
-		url: dir + "/modules/restAPI/startGame/",
-		data: "token=" + token,
-		complete: function(data){
-			data = data.responseJSON;
-			if(data.error){
-				message("Ocorreu um erro...");
-				setTimeout(function(){ window.location = window.location; }, 2000);
-			}		
-		}
-	});
-}
-
 //Contar no contador
 function scoreStart(Time){
 	var time = Time;

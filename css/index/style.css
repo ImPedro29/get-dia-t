@@ -1,11 +1,24 @@
 body{
 	background-color: rgba(0,0,0,0.85);
 }
+#message{
+	top: 15px;
+	width: 400px;
+	height: 100px;
+	color: white;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 35px;
+	color: white;
+	position: relative;
+	font-family: "Arial", sans-serif;
+	text-align: center;
+}
 .startGame{
     width: 400px;
     height: 200px;
     border-radius: 100px;
-    font-size: 55px;
+    font-size: 60px;
     border-width: 0px;
     background-color: #26de26;
     color: white;
@@ -30,8 +43,98 @@ body{
 	margin: 0px;
 	font-weight: normal;
 }
-.startGame:disabled{
-	-webkit-transition: all 0.6s ease;
-    transition: all 0.6s ease;
+.startGameAnimationButton{
+	width: 200px;
+    height: 60px !important;
+	transform: translate(0,0);
+	top: 20px;
+	left: 20px;
+	font-size: 15px !important;
 	opacity: 0;
+	background-color: rgb(120, 120, 120);
+	box-shadow: initial;
+}
+.schedule{
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+	width: 0px;
+	height: 0px;
+	border-radius: 100%;
+	background-color: transparent;
+	border-color: #26de26;
+	border-width: 0px;
+	border-style: solid;
+	-webkit-transition: width 0.4s cubic-bezier(0.72, 0.72, 0, 1.79), height 0.4s cubic-bezier(0.72, 0.72, 0, 1.79), top 0.3s ease, left 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.72, 0.72, 0, 1.79), height 0.4s cubic-bezier(0.72, 0.72, 0, 1.79), top 0.3s ease, left 0.3s ease;
+	font-size: 140px;
+	color: white;
+	font-family: "Arial", sans-serif;
+	outline: none;
+}
+.scheduleActived{
+	width: 400px;
+	height: 400px;
+	border-width: 6px;
+}
+.scheduleActivedAnimation{
+	width: 420px;
+	height: 420px;
+	-webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.scheduleDesactivedAnimation{
+	width: 70px;
+	height: 70px;
+	font-size: 20px;
+	left: 16px;
+	top: 88%;
+	border-width: 3px;
+	transform: translate(0,0);
+	position: fixed;
+}
+#question{
+	position: absolute;
+	right: 10px;
+	top: 30px;
+	width: 73%;
+}
+.questionEnunciation{
+	color: white;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+	font-size: 19px;
+	margin: -40px 0px;
+}
+#questionImage{
+	max-width: 200px;
+	max-height: 200px;
+	margin-top: 60px;
+}
+.alternativesButton{
+	color: white;
+	font-size: 15px;
+	background-color: transparent;
+	border-color: white;
+	border-width: 2px;
+	padding: 3px;
+	text-align: left;
+	font-family: "Arial", sans-serif;
+	border-style: solid;
+	cursor: pointer;
+	margin: 5px;
+	outline: none;
+}
+#questionNumber{
+	font-size: 40px;
+	color: white;
+	font-family: "Arial", sans-serif;
+	border-width: 0px 0px 2px 0px;
+	padding-bottom: 3px;
+	border-color: white;
+	border-style: solid;
+}
+.displayNone{
+	display: none;
 }
