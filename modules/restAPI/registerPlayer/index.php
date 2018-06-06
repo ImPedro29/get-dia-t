@@ -25,8 +25,16 @@
 	$sql = "SELECT * FROM rounds";
 	$res = $con->query($sql);
 	
+	if($res->num_rows > 0){
+		while($row = $res->fetch_assoc()){
+			if(($row["id"] + 1) > $roundID){
+				$roundID = $row["id"] + 1;
+			}
+		}
+	}
+	
 	$question = rand(2,3);
-
+	
 	$sql = "INSERT INTO rounds (player, question, corrects) VALUES ('$userForRegister', '$question', 0)";
 	$response->question = $question;
 	$response->error = true;
@@ -36,14 +44,13 @@
 	$res = $con->query($sql);
 	
 	$register = true;
+	
 	//Checa se o usuário ja está no banco de dados
 	while($row = $res->fetch_assoc()){
-		if($res->num_rows == $row["id"]){
-			$id = $row["id"];
-			$plays = $row["plays"];
-			if($row["username"] == $userForRegister){
-				$register = false;
-			}
+		$id = $row["id"];
+		$plays = $row["plays"];
+		if($row["username"] == $userForRegister){
+			$register = false;
 		}
 	}
 	
@@ -58,7 +65,7 @@
 		$con->query($sql) or die(json_encode($response));
 	}
 	
-	
+	$response->roundID = $roundID;
 	$response->error = false;
 	echo json_encode($response);
 	

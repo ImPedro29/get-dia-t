@@ -28,11 +28,11 @@
 			<h4 id="questionEnunciation" class="questionEnunciation">Carregando...</h4>
 			<img id="questionImage"></img><br><br>
 			<center>
-			<button onclick="endGame(0);" class="alternativesButton" id="alternativeA">NaN</button>
-			<button onclick="endGame(1);" class="alternativesButton" id="alternativeB">NaN</button>
-			<button onclick="endGame(2);" class="alternativesButton" id="alternativeC">NaN</button>
-			<button onclick="endGame(3);" class="alternativesButton" id="alternativeD">NaN</button>
-			<button onclick="endGame(4);" class="alternativesButton" id="alternativeE">NaN</button>
+			<button onclick="endGame(0, this);" class="alternativesButton" id="alternativeA">NaN</button>
+			<button onclick="endGame(1, this);" class="alternativesButton" id="alternativeB">NaN</button>
+			<button onclick="endGame(2, this);" class="alternativesButton" id="alternativeC">NaN</button>
+			<button onclick="endGame(3, this);" class="alternativesButton" id="alternativeD">NaN</button>
+			<button onclick="endGame(4, this);" class="alternativesButton" id="alternativeE">NaN</button>
 			</center>
 			<div id="message"></div>
 		</div>

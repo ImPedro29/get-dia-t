@@ -1,8 +1,8 @@
 //Variaveis
 var questionNumberAjax;
 
-var interval = 450; //Segundos para resolver a questão
-var intervalTime = 6; //Segundos de intervalo entre as questões
+var interval = 50; //Segundos para resolver a questão
+var intervalTime = 5; //Segundos de intervalo entre as questões
 
 var buttonStart = document.getElementById("startGame");
 var numberOfPlayers = document.getElementById("startGamePlayers");
@@ -11,8 +11,11 @@ var messageBox = document.getElementById("message");
 var question = document.getElementById("question");
 var questionNumber = document.getElementById("questionNumber");
 
+var ended = false;
+
 var name;
 var theQuestion;
+var round = 0;
 
 var status = 0;
 var gameStatus = 1; //0 -> Intervalo entre Questões 1 ->Intervalo para resolver questão
@@ -34,7 +37,7 @@ buttonStart.onclick = function(){
 
 //Iniciar jogo
 function startGame(){
-	if(getCookie("name") == ""){
+	if(getCookie("name") == "" || getCookie("name") == "null" || getCookie("name") == null){
 		while(name == "" || name == "null" || name == null){
 			name = prompt("Digite seu nome:");
 		}
@@ -56,12 +59,13 @@ function startGame(){
 	message("Iniciando o jogo...<br>Prepare-se!");
 }
 
+var scheduleScore;
 //Contar no contador
 function scoreStart(Time){
 	var time = Time;
-	
+	clearInterval(scheduleScore);
 	registerPlayer();
-	var scheduleScore = setInterval(function(){
+	scheduleScore = setInterval(function(){
 		scheduleBox.innerHTML = time;
 		scheduleBoxAnimation();
 		time--;
@@ -100,6 +104,7 @@ function registerPlayer(){
 				setTimeout(function(){ window.location = window.location; }, 2000);
 			}
 			theQuestion = data.question;
+			round = data.roundID;
 		}
 	});
 }
@@ -173,24 +178,38 @@ function onEnd(){
 	setTimeout(function(){
 		restartGame();
 	}, 10000);
-	message("Reiniciando Jogo!");
+	message("Volte às 12:00 para ver o resultado!");
 }
 
-function endGame(num){
-	$.ajax({
-	type: "GET",
-	dataType: "json",
-	url: dir + "/modules/restAPI/sendResponse/",
-	data: "alternative=" + num,
-	complete: function(data){
-		data = data.responseJSON;
-		if(data.error){
-			message("Ocorreu um erro... Reiniciando rodada.");
-			setTimeout(function(){ window.location = window.location; }, 2000);
-		}else{
-			
-		}
-	});
+function endGame(num , el){
+	if(!ended){
+		var points = parseInt((parseInt(document.getElementById("schedule").innerHTML)/interval)*10);
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: dir + "/modules/restAPI/sendResponse/",
+			data: {"alternative": num, "name": name, "question": theQuestion, "id": round, "points": points},
+			complete: function(data){
+				data = data.responseJSON;
+				if(data.error){
+					message("Ocorreu um erro... Reiniciando rodada.");
+					setTimeout(function(){ window.location = window.location; }, 2000);
+				}else{
+					ended = true;
+					if(data.correct){
+						el.style.borderColor = "#26de26";
+					}else{
+						el.style.borderColor = "red";
+					}
+					scoreStart(10);
+					message("Reiniciando jogo...");
+					setTimeout(function(){
+						restartGame();
+					}, 10000);
+				}
+			}
+		});
+	}
 }
 
 //Reiniciar jogo

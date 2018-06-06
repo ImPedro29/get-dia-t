@@ -10,7 +10,7 @@ body{
 	transform: translateX(-50%);
 	font-size: 35px;
 	color: white;
-	position: relative;
+	position: absolute;
 	font-family: "Arial", sans-serif;
 	text-align: center;
 }
